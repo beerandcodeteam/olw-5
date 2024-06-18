@@ -64,4 +64,6 @@ Migrations são uma maneira de versionar as tabelas de sua base de dados. Para e
 - Execute `./vendor/bin/sail art db:seed` para popular o seu banco com dados fictícios
 
 # Diagrama do banco de dados
-<iframe width="560" height="315" src='https://dbdiagram.io/e/666f3d8ea179551be602d807/667180b85a764b3c72c7e72e'> </iframe>
+![Diagrama](https://i.ibb.co/6FsBZtJ/Captura-de-tela-2024-06-18-094423.png)
+
+[Veja o diagrama completo](https://dbdiagram.io/e/666f3d8ea179551be602d807/667180b85a764b3c72c7e72e)
