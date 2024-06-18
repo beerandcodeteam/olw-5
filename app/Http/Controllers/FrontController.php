@@ -19,7 +19,7 @@ class FrontController extends Controller
     }
 
     public function home() {
-        [$brands, $categories, $products] = Cache::rememberForever("home-control", function() {
+        [$brands, $categories, $products] = Cache::tags(['product_related'])->rememberForever("home-control", function() {
             $brands = Brand::where('is_featured', 1)->get();
             $categories = Category::where('is_featured', 1)->get();
             $products = Product::with('skus.images')->where('is_featured', 1)->get();
