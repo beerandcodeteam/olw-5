@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class FrontController extends Controller
 {
@@ -18,9 +19,14 @@ class FrontController extends Controller
     }
 
     public function home() {
-        $brands = Brand::where('is_featured', 1)->get();
-        $categories = Category::where('is_featured', 1)->get();
-        $products = Product::with('skus.images')->where('is_featured', 1)->get();
+        [$brands, $categories, $products] = Cache::rememberForever("home-control", function() {
+            $brands = Brand::where('is_featured', 1)->get();
+            $categories = Category::where('is_featured', 1)->get();
+            $products = Product::with('skus.images')->where('is_featured', 1)->get();
+
+            return [$brands, $categories, $products];
+        });
+
 
         return response([
             'brands' => $brands,
