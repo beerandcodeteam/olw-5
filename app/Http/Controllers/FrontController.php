@@ -82,4 +82,9 @@ class FrontController extends Controller
 
         return response()->json($product);
     }
+
+    public function static()
+    {
+        return "ok";
+    }
 }

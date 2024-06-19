@@ -25,6 +25,7 @@ Route::controller(\App\Http\Controllers\FrontController::class)->prefix('fronten
     Route::get('/products', 'products');
     Route::get('/productAssessories', 'productAssessories');
     Route::get('/product/{product}', 'product');
+    Route::get('/product', 'static');
 });
 
 require __DIR__.'/auth.php';
