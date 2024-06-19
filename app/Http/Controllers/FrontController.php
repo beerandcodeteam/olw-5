@@ -18,9 +18,16 @@ class FrontController extends Controller
     }
 
     public function home() {
-        $brands = Brand::where('is_featured', 1)->get();
-        $categories = Category::where('is_featured', 1)->get();
-        $products = Product::with('skus.images')->where('is_featured', 1)->get();
+        $brands = Brand::where('is_featured', 1)
+            ->select('id', 'name')
+            ->get();
+        $categories = Category::where('is_featured', 1)
+            ->select('id', 'name')
+            ->get();
+        $products = Product::with(['skus:id,name,price,product_id', 'skus.images:id,url,sku_id'])
+            ->where('is_featured', 1)
+            ->select('id', 'name', 'slug')
+            ->get();
 
         return response([
             'brands' => $brands,
